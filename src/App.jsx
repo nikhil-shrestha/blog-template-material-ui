@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
-
+import axios from 'axios';
 import { Main } from './layouts';
 import { MainFeatured, FeatureCard, Sidebar, Country } from './components';
 
@@ -46,6 +46,21 @@ const sidebar = {
 export default function Blog() {
   const classes = useStyles();
 
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          'https://coronavirus-19-api.herokuapp.com/countries'
+        );
+        setData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
+  console.log('data>>', data);
   return (
     <Main>
       <Grid container spacing={4} className={classes.mainGrid}>
@@ -74,7 +89,7 @@ export default function Blog() {
             />
           </Grid>
 
-          <Country />
+          <Country key={data.country} data={data} />
         </Grid>
 
         <Sidebar

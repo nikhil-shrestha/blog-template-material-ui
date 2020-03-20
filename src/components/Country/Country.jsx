@@ -74,7 +74,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Orders() {
+export default function Orders(props) {
+  console.log('props>>', props);
+  const { data } = props;
+  console.log('data>', data);
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -94,15 +97,20 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
-            </TableRow>
-          ))}
+          {data.length > 0 &&
+            data.map(row => (
+              <TableRow key={row.country}>
+                <TableCell>{row.country}</TableCell>
+                <TableCell>{row.cases}</TableCell>
+                <TableCell>{row.todayCases}</TableCell>
+                <TableCell>{row.deaths}</TableCell>
+                <TableCell>{row.todayDeaths}</TableCell>
+                <TableCell>{row.recovered}</TableCell>
+                <TableCell>{row.active}</TableCell>
+                <TableCell>{row.critical}</TableCell>
+                <TableCell>{row.casesPerOneMillion}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
