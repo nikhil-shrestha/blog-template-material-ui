@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -87,32 +88,45 @@ export default function Blog() {
     <Main>
       <Grid container spacing={4} className={classes.mainGrid}>
         <Grid item xs={12} md={9}>
-          <MainFeatured
-            cases={ttlCases}
-            deaths={ttlDeath}
-            recovered={ttlRecovery}
-          />
-          <Grid container justify="space-around" spacing={4}>
-            <FeatureCard
-              title="ACTIVE CASES"
-              count={ttlActive + ttlSerious}
-              cond1={ttlActive}
-              percent1={95}
-              desc1="in Mild Condition"
-              cond2={ttlSerious}
-              percent2={5}
-              desc2="Serious or Critical"
-            />
-            <FeatureCard
-              title="CLOSED CASES"
-              count={ttlRecovery + ttlDeath}
-              cond1={ttlRecovery}
-              percent1={90}
-              desc1="Recovered / Discharged"
-              cond2={ttlDeath}
-              percent2={10}
-              desc2="Deaths"
-            />
+          <Grid item container>
+            <Grid item md={8}>
+              <MainFeatured
+                cases={ttlCases}
+                deaths={ttlDeath}
+                recovered={ttlRecovery}
+              />
+            </Grid>
+
+            <Grid item md={4}>
+              <Paper>
+                <Grid container direction="column">
+                  <Grid item>
+                    <FeatureCard
+                      title="ACTIVE CASES"
+                      count={ttlActive + ttlSerious}
+                      cond1={ttlActive}
+                      percent1={95}
+                      desc1="in Mild Condition"
+                      cond2={ttlSerious}
+                      percent2={5}
+                      desc2="Serious or Critical"
+                    />
+                  </Grid>
+                  <Grid item>
+                    <FeatureCard
+                      title="CLOSED CASES"
+                      count={ttlRecovery + ttlDeath}
+                      cond1={ttlRecovery}
+                      percent1={90}
+                      desc1="Recovered / Discharged"
+                      cond2={ttlDeath}
+                      percent2={10}
+                      desc2="Deaths"
+                    />
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
 
           <Country key={data.country} data={data} />
