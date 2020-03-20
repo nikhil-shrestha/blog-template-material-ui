@@ -46,7 +46,14 @@ export default function MainFeaturedPost(props) {
         <Typography variant="h4" gutterBottom align="center">
           Coronavirus Cases:
         </Typography>
-        <Typography variant="body1" gutterBottom align="center">
+        <Typography
+          component="h2"
+          variant="h5"
+          color="inherit"
+          noWrap
+          className={classes.toolbarTitle}
+          align="center"
+        >
           {cases}
         </Typography>
       </Grid>
@@ -54,7 +61,14 @@ export default function MainFeaturedPost(props) {
         <Typography variant="h4" paragraph align="center">
           Deaths:
         </Typography>
-        <Typography variant="body1" paragraph align="center">
+        <Typography
+          component="h2"
+          variant="h5"
+          color="inherit"
+          noWrap
+          className={classes.toolbarTitle}
+          align="center"
+        >
           {deaths}
         </Typography>
       </Grid>
@@ -62,7 +76,14 @@ export default function MainFeaturedPost(props) {
         <Typography variant="h4" paragraph align="center">
           Recovered:
         </Typography>
-        <Typography variant="body2" paragraph align="center">
+        <Typography
+          component="h2"
+          variant="h5"
+          color="inherit"
+          noWrap
+          className={classes.toolbarTitle}
+          align="center"
+        >
           {recovered}
         </Typography>
       </Grid>

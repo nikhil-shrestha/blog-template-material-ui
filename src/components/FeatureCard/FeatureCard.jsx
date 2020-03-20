@@ -54,20 +54,20 @@ export default function FeaturCard(props) {
 
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
-              <Typography variant="h4" color="textPrimary">
+              <Typography variant="h5" color="textPrimary">
                 {cond1}
               </Typography>
-              <Typography variant="h6" color="textSecondary">
+              <Typography variant="subtitle1" color="textSecondary">
                 ({percent1}%)
               </Typography>
               {desc1}
             </Grid>
 
             <Grid item>
-              <Typography variant="h4" color="textPrimary">
+              <Typography variant="h5" color="textPrimary">
                 {cond2}
               </Typography>
-              <Typography variant="h6" color="textSecondary">
+              <Typography variant="subtitle1" color="textSecondary">
                 ({percent2}%)
               </Typography>
               {desc2}

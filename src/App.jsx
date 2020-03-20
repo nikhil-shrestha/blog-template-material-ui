@@ -44,6 +44,8 @@ export default function Blog() {
   const [ttlCases, setTtlCases] = useState(0);
   const [ttlDeath, setTtlDeath] = useState(0);
   const [ttlRecovery, setTtlRecovery] = useState(0);
+  const [ttlActive, setTtlActive] = useState(0);
+  const [ttlSerious, setTtlSerious] = useState(0);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -56,16 +58,22 @@ export default function Blog() {
         let totalCases1 = 0;
         let totalDeaths1 = 0;
         let totalRecovery1 = 0;
+        let totalActive1 = 0;
+        let totalSerious1 = 0;
 
         data.forEach(item => {
           totalCases1 += parseInt(item.cases);
           totalDeaths1 += parseInt(item.deaths);
           totalRecovery1 += parseInt(item.recovered);
+          totalActive1 += parseInt(item.active);
+          totalSerious1 += parseInt(item.critical);
         });
 
         setTtlCases(totalCases1);
         setTtlDeath(totalDeaths1);
         setTtlRecovery(totalRecovery1);
+        setTtlActive(totalActive1);
+        setTtlSerious(totalSerious1);
 
         setData(data);
       } catch (err) {
@@ -87,21 +95,21 @@ export default function Blog() {
           <Grid container justify="space-around" spacing={4}>
             <FeatureCard
               title="ACTIVE CASES"
-              count="147,245"
-              cond1="139,867"
+              count={ttlActive + ttlSerious}
+              cond1={ttlActive}
               percent1={95}
               desc1="in Mild Condition"
-              cond2="7,378"
+              cond2={ttlSerious}
               percent2={5}
               desc2="Serious or Critical"
             />
             <FeatureCard
               title="CLOSED CASES"
-              count="98,487"
-              cond1="88,441"
+              count={ttlRecovery + ttlDeath}
+              cond1={ttlRecovery}
               percent1={90}
               desc1="Recovered / Discharged"
-              cond2="10,046"
+              cond2={ttlDeath}
               percent2={10}
               desc2="Deaths"
             />
