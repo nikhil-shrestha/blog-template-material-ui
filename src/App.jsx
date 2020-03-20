@@ -14,11 +14,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const mainFeaturedPost = {
-  total: '245,732',
-  deaths: '10,046',
-  recovered: '88,441'
-};
 const sidebar = {
   title: 'About',
   description:
@@ -46,26 +41,49 @@ const sidebar = {
 export default function Blog() {
   const classes = useStyles();
 
+  const [ttlCases, setTtlCases] = useState(0);
+  const [ttlDeath, setTtlDeath] = useState(0);
+  const [ttlRecovery, setTtlRecovery] = useState(0);
   const [data, setData] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
+        const { data } = await axios.get(
           'https://coronavirus-19-api.herokuapp.com/countries'
         );
-        setData(response.data);
+
+        let totalCases1 = 0;
+        let totalDeaths1 = 0;
+        let totalRecovery1 = 0;
+
+        data.forEach(item => {
+          totalCases1 += parseInt(item.cases);
+          totalDeaths1 += parseInt(item.deaths);
+          totalRecovery1 += parseInt(item.recovered);
+        });
+
+        setTtlCases(totalCases1);
+        setTtlDeath(totalDeaths1);
+        setTtlRecovery(totalRecovery1);
+
+        setData(data);
       } catch (err) {
         console.log(err);
       }
     }
     fetchData();
   }, []);
-  console.log('data>>', data);
+
   return (
     <Main>
       <Grid container spacing={4} className={classes.mainGrid}>
-        <Grid item xs={12} md={8}>
-          <MainFeatured post={mainFeaturedPost} />
+        <Grid item xs={12} md={9}>
+          <MainFeatured
+            cases={ttlCases}
+            deaths={ttlDeath}
+            recovered={ttlRecovery}
+          />
           <Grid container justify="space-around" spacing={4}>
             <FeatureCard
               title="ACTIVE CASES"
@@ -92,12 +110,14 @@ export default function Blog() {
           <Country key={data.country} data={data} />
         </Grid>
 
-        <Sidebar
-          title={sidebar.title}
-          description={sidebar.description}
-          archives={sidebar.archives}
-          social={sidebar.social}
-        />
+        <Grid item xs={12} md={3}>
+          <Sidebar
+            title={sidebar.title}
+            description={sidebar.description}
+            archives={sidebar.archives}
+            social={sidebar.social}
+          />
+        </Grid>
       </Grid>
     </Main>
   );

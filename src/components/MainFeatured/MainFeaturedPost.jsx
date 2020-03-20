@@ -1,10 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
@@ -35,9 +32,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function MainFeaturedPost({ post }) {
+export default function MainFeaturedPost(props) {
   const classes = useStyles();
-  const { total, deaths, recovered } = post;
+  const { cases, deaths, recovered } = props;
   return (
     <Grid
       container
@@ -50,7 +47,7 @@ export default function MainFeaturedPost({ post }) {
           Coronavirus Cases:
         </Typography>
         <Typography variant="body1" gutterBottom align="center">
-          {total}
+          {cases}
         </Typography>
       </Grid>
       <Grid item>

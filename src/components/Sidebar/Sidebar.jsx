@@ -9,11 +9,11 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles(theme => ({
   sidebarAboutBox: {
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.grey[200],
+    backgroundColor: theme.palette.grey[200]
   },
   sidebarSection: {
-    marginTop: theme.spacing(3),
-  },
+    marginTop: theme.spacing(3)
+  }
 }));
 
 export default function Sidebar(props) {
@@ -21,7 +21,7 @@ export default function Sidebar(props) {
   const { archives, description, social, title } = props;
 
   return (
-    <Grid item xs={12} md={4}>
+    <>
       <Paper elevation={0} className={classes.sidebarAboutBox}>
         <Typography variant="h6" gutterBottom>
           {title}
@@ -32,7 +32,12 @@ export default function Sidebar(props) {
         Archives
       </Typography>
       {archives.map(archive => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
+        <Link
+          display="block"
+          variant="body1"
+          href={archive.url}
+          key={archive.title}
+        >
           {archive.title}
         </Link>
       ))}
@@ -40,7 +45,7 @@ export default function Sidebar(props) {
         Social
       </Typography>
       {social.map(network => (
-        <Link display="block" variant="body1" href="#" key={network}>
+        <Link key={network.name} display="block" variant="body1" href="#">
           <Grid container direction="row" spacing={1} alignItems="center">
             <Grid item>
               <network.icon />
@@ -49,7 +54,7 @@ export default function Sidebar(props) {
           </Grid>
         </Link>
       ))}
-    </Grid>
+    </>
   );
 }
 
@@ -57,5 +62,5 @@ Sidebar.propTypes = {
   archives: PropTypes.array,
   description: PropTypes.string,
   social: PropTypes.array,
-  title: PropTypes.string,
+  title: PropTypes.string
 };

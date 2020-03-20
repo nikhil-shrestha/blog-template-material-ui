@@ -1,20 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
-import { Header, Footer, Sidebar } from './components';
-
-const useStyles = makeStyles(theme => ({
-  mainGrid: {
-    marginTop: theme.spacing(3)
-  }
-}));
+import { Header, Footer } from './components';
 
 export default function Main(props) {
-  const classes = useStyles();
-
   const { children } = props;
 
   const sections = [

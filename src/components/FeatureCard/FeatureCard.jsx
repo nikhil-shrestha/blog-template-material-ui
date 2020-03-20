@@ -52,8 +52,8 @@ export default function FeaturCard(props) {
             </Typography>
           </div>
 
-          <Grid container justify="space-between">
-            <Grid item alignItems="center">
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item>
               <Typography variant="h4" color="textPrimary">
                 {cond1}
               </Typography>
